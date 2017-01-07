@@ -1,0 +1,163 @@
+
+<template>
+    <div>
+       <image style="height:{{deviceHeight}};width:750px;" src="http://d2.freep.cn/3tb_170104102348j6mx581068.jpg"></image>
+      <div style="position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;">
+        <myheader titlesrc="{{titlesrc}} " style="margin-top:20px;"></myheader>
+        <image src="{{imgurl}}" resize="cover" class="image"></image>
+        <div class="text-border">
+            <div style="margin-top:40px;margin-left:50px;flex-direction:row;align-items: center;">
+                <text class="text-title" value="{{title}}"></text>
+                <image src="{{loveimg}}" class="loveimg" if="showlove" onclick="loveClick"></image> 
+            </div>
+            <div style="margin-top:20px;margin-left:50px;padding-right:50px;height:300px;">
+                <text class="text-content" value="{{content}}"></text>
+                <text class="text-content" style="margin-top:30px;" value="{{benefit}}"></text>
+            </div>
+        </div>
+        <div class="btn-border">
+            <div class="bars">
+                <div class="btn-bg" style="margin-left: 80px; background-color:{{btnbg[0].bg}}">
+                    <text class="text-btn" >首选</text>
+                </div>
+                <div class="btn-bg" style="background-color:{{btnbg[1].bg}}">
+                    <text class="text-btn" >其次</text>
+                </div>
+                <div class="btn-bg" style="background-color:{{btnbg[2].bg}}">
+                    <text class="text-btn" >最后的纠结</text>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</template>
+<style>
+
+   .image{
+        
+        width: 600px;
+        height:360px;
+        border-radius:30;
+        margin-top: 30px; 
+        margin-left: 70px;
+    }
+    .text-border{
+        margin-top: 30px; 
+        margin-left: 70px;
+        margin-bottom: 50px;
+        width: 600px;
+        height:470px;
+        background-color:rgba(0,0,0,0.3);
+        border-radius:30;
+
+    }
+    .btn-border{
+        position:fixed;
+        bottom: 0px;
+        width: 750px;
+        height:100px;
+        background-color:rgba(0,0,0,0.3);
+    }
+    .text-title{
+        font-size: 35px;font-weight: bold;font-family: Microsoft Yahei;color:#F0F8FF;
+
+    }
+    .text-content{
+        font-size: 27px;font-family: Microsoft Yahei;color:#F0F8FF;
+    }
+    .bars{
+         flex-direction: row;
+         position: absolute;
+         bottom: 10;
+    }
+    .btn-bg{
+        width:160px;
+        height:70px;
+        border-radius:15;
+        margin-left: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+    .text-btn{
+        font-size: 25px;font-family: Microsoft Yahei;color:#F0F8FF;
+    }
+    .loveimg{
+        width: 55px;height:55px;position: absolute;right: 30px;bottom:1px;
+    }
+</style>
+<script>
+    var apis = require('../common/api');
+    var Storage = require('@weex-module/storage');
+    module.exports={
+        data:{
+            btnbg:[{bg:'rgba(255,255,255,0.25)'},
+                {bg:'#FF4040'},
+                {bg:'rgba(255,255,255,0.25)'}],
+            showlove:false,
+            id:'',
+            loveimg:'http://d3.freep.cn/3tb_170103175358b9wj581068.png',
+            imgurl:'http://preview.quanjing.com/fodrm010/fod-367942.jpg',
+            content:'这里需要说一堆不知道说啥所以凑够一百字来测试哈哈哈哈',
+            title:'好吃的',
+            benefit:'很好有营养不说了',
+            titlesrc:'http://d2.freep.cn/3tb_1612251431435jrn581068.png',
+
+        },
+        methods:{
+            onFirstClick:function(){
+                apis.navigator(this.baseURL,'module/showresult1.js',function(){});
+            },
+            onLastClick:function(){
+                apis.navigator(this.baseURL,'module/showresult3.js',function(){});
+            },
+            loveClick:function(){
+                var self=this;
+                if(self.loveimg=='http://d3.freep.cn/3tb_170103175358b9wj581068.png'){
+                    self.loveimg='http://d3.freep.cn/3tb_1701031753581asn581068.png';
+                    var msg={};
+                    msg.condition={};
+                    msg.condition.foodId=self.id;
+                    apis.choiceLove(msg,function(retback){
+                        console.log(retback)
+                    });
+                }
+                else
+                    self.loveimg='http://d3.freep.cn/3tb_170103175358b9wj581068.png';
+            }
+        },
+        created: function () {
+            var self = this;
+
+            this.$getConfig(function(config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight;
+                self.imgHeight = self.deviceHeight - 120;
+            }.bind(this));
+
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl, true);
+
+            Storage.getItem('result2',function(e){
+                var result2=JSON.parse(e.data);
+                console.log(result2);
+                self.title = result2.name;
+                self.content = result2.describe;
+                self.imgurl = apis.apiURL.baseurl+'/images/db/' + result2.image[0];
+                self.benefit = result2.benefit;
+            });
+
+            Storage.getItem('username',function(e){
+                if(e.data!='null'){
+                   self.showlove=true; 
+                }               
+            });
+
+             this.$on('back',function(){
+              apis.navigator(self.baseURL,'module/home.js',function(){});
+            })
+        }
+    }
+</script> 

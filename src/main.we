@@ -1,0 +1,132 @@
+<template>
+    <div >
+      <image style="height:{{deviceHeight}};width:750px;" src="http://d2.freep.cn/3tb_16122310412987i0581068.png"></image>
+      <div class="container">
+        <image class="logo" src="http://d2.freep.cn/3tb_1612231141546x10581068.png"></image>
+        <div class="main">
+            <image class="user" src="http://d3.freep.cn/3tb_161223104131v3it581068.png"></image>
+            <div>
+              <input type="text" class="input" oninput="inputname" style="margin-top:5px;" value="" placeholder="请输入用户名"/>
+              <input type="password" oninput="inputpassword" style="margin-top:75px;" class="input" value=""  placeholder="请输入密码"/>
+             </div>
+        </div>  
+        <image class="signin" src="{{signinsrc}}" onclick="login"></image>
+        <image class="signup" src="{{signupsrc}}" onclick="register"></image>
+        <image class="free"   src="{{freesrc}}"   onclick="freelog"></image>  
+      </div>
+    </div>
+</template>
+<style>
+  .container{
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .logo{
+    width:110px;
+    height:110px;
+    margin-top: 170px;
+
+  }
+  .main{
+    flex-direction: row;
+    margin-top: 120px;
+
+  }
+  .user{
+    width:160px;
+    height:180px;
+
+  }
+  .input {
+    background-color:#F5F5F5;
+    margin-left: 10px;
+    font-size: 25;
+    height: 50;
+    width: 340;
+  }
+  .signin{
+    margin-top: 60px;
+    width:270px;
+    height:65px;
+  }
+  .signup{
+    margin-top: 40px;
+    width:280px;
+    height:70px;
+  }
+  .free{
+    position: fixed;
+    bottom: 50px;
+    right:0px;
+    width:300px;
+    height:50px;
+  }
+  </style>
+<script>
+  require('weex-components');
+  var apis = require('./common/api');
+  var Storage = require('@weex-module/storage');
+  module.exports ={
+    data:{
+      deviceHeight: 1024,
+      username:'',
+      password:'',
+      signinsrc:"http://d3.freep.cn/3tb_1612231040223wxe581068.png",
+      signupsrc:"http://d2.freep.cn/3tb_161223141451jrbx581068.png",
+      freesrc:"http://d2.freep.cn/3tb_17010211190642yy581068.png"
+    },
+    methods:{
+      freelog:function(){
+        Storage.setItem('username','null',function(){})
+       apis.navigator(this.baseURL,'module/home.js',function(){});
+      },
+      login:function(){
+        var self=this;
+        var msg={};
+        msg.user={};
+        msg.user.username=this.username;
+        msg.user.password=this.password;
+        apis.getLogin(msg,function(retdata){
+          var data=JSON.parse(retdata.data);
+          if(data.login=="success"){
+            Storage.setItem('username', self.username, function() {});
+            apis.navigator(self.baseURL,'module/home.js',function(){});
+          }
+          else{
+            self.$call('modal', 'toast', {
+               'message': '用户名或密码错误',
+               'duration': 5
+              });
+          }
+
+        })
+      },
+      register:function(){
+        apis.navigator(this.baseURL,'module/register.js',function(){});
+      },
+      inputname:function(event){
+        this.username = event.value;
+        console.log(this.username)
+      },
+      inputpassword:function(event){
+        this.password=event.value;
+      }
+    },
+    created: function () {
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl,true);
+
+            this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight
+            }.bind(this));
+    }
+  }
+</script>
+
+
+

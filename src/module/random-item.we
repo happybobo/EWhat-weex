@@ -1,0 +1,20 @@
+<template>
+	<div>
+		<image src="{{imgurl}}" class="image"></image>
+		<text class="text" value="{{title}}"></text>
+	</div>
+</template>
+<style>
+	.image{
+		width:630px;height:340px;border-radius: 30;margin-left:30px;
+	    margin-top: 25px;
+	}
+	.text{
+        font-size: 40;font-family: Microsoft Yahei;margin-left: 30;margin-top: 25;
+    }
+</style>
+<script>
+	module.exports={
+		data:{imgurl: '',title: ''}
+	}
+</script>

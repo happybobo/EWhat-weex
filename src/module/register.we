@@ -1,0 +1,134 @@
+<template>
+    <div >
+      <image style="height:{{deviceHeight}};width:750px;" src="http://d2.freep.cn/3tb_16122310412987i0581068.png"></image>
+      <div class="div">
+        <image class="logo" src="http://d2.freep.cn/3tb_1612231141546x10581068.png"></image>
+        <div class="main">
+            <image class="user" src="http://d3.freep.cn/3tb_1612301411553g5o581068.png"></image>
+            <div>
+              <input type="text" class="input" oninput="inputname"  style="margin-top:5px;" value=""/>
+              <input type="text"  style="margin-top:55px;" oninput="inputpassword1"  class="input"  value=""/>
+              <input type="text"  style="margin-top:55px;" oninput="inputpassword2"  class="input"  value=""/>
+            </div>
+        </div>  
+        <image class="btn" onclick="register" src="http://d2.freep.cn/3tb_161230141153doyt581068.png"></image>
+        <image src="{{gotoLoginSrc}}" onclick="gotoLogin" class="gotoLogin"></image>
+      </div>
+      
+    </div>
+</template>
+<style>
+  .div{
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .logo{
+    width:110px;
+    height:110px;
+    margin-top: 170px;
+  }
+  .main{
+    flex-direction: row;
+    margin-top: 180px;
+
+  }
+  .user{
+    width:210px;
+    height:280px;
+  }
+  .input {
+    background-color:#F5F5F5;
+    margin-left: 10px;
+    font-size: 25;
+    height: 50;
+    width: 340;
+  }
+  .btn{
+    margin-top: 150px;
+    width:270px;
+    height:65px;
+  }
+  .gotoLogin{
+    position: fixed;
+    bottom: 50px;
+    right:0px;
+    width:270px;
+    height:50px;
+  }
+</style>
+<script>
+  require('weex-components');
+  var apis = require('../common/api');
+  module.exports ={
+    data:{
+      deviceHeight: 1024,
+      username:'',
+      password1:'',
+      password2:'',
+      gotoLoginSrc:"http://d3.freep.cn/3tb_1612301548106ewe581068.png"
+    },
+    methods:{
+      register:function(){
+        var self=this;
+        if(this.password1==this.password2&&this.password1!=''){
+          var msg={};
+          msg.user={};
+          msg.user.username=this.username;
+          msg.user.password=this.password1;
+          apis.getRegister(msg,function(retdata){
+            var data=JSON.parse(retdata.data);
+            if(data.success==true){
+              self.$call('modal', 'toast', {
+                'message': '注册成功了哦',
+                'duration': 5
+               });
+            }
+            else{
+              self.$call('modal','toast',{
+                'message':'用户名已存在',
+                'duration': 5
+              });
+            }
+
+          });
+        }
+        else{
+          self.$call('modal', 'toast', {
+            'message': '两次密码不一致',
+            'duration': 5
+          });
+        }        
+      },
+      gotoLogin:function(){
+         apis.navigator(this.baseURL,'main.js',function(){});
+      },
+      inputname:function(event){
+        this.username = event.value;
+      },
+      inputpassword1:function(event){
+        this.password1=event.value;
+      },
+      inputpassword2:function(event){
+        this.password2=event.value;
+      }
+    },
+    created: function () {
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl,true);
+
+            this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight
+            }.bind(this));
+
+    }
+  }
+</script>
+
+
+
+ 

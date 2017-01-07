@@ -1,0 +1,64 @@
+<template>
+  <div style="background-color:#DCDCDC">
+    <myheader titlesrc="{{titlesrc}} "></myheader>
+
+     <div class="select-panel"></div>
+     <image onclick="selectOne" style="width:250px;height:250px;position:absolute;top:250px;left:80px;" src="http://d3.freep.cn/3tb_1612231654465wku581068.png" vid="1"></image>
+     <image onclick="selectOne" style="width:250px;height:250px;position:absolute;top:250px;left:440px;" src="http://d3.freep.cn/3tb_161223165455m0ew581068.png" vid="2"></image>
+     <image onclick="selectOne" style="width:250px;height:250px;position:absolute;top:560px;left:80px;" src="http://d2.freep.cn/3tb_161223164505twdy581068.png" vid="3"></image>
+     <image onclick="selectOne" style="width:250px;height:250px;position:absolute;top:560px;left:440px;" src="http://d3.freep.cn/3tb_161223165458piy9581068.png" vid="4"></image>
+     <image onclick="selectOne" style="width:250px;height:250px;position:absolute;top:860px;left:250px;" src="http://d2.freep.cn/3tb_161223165449i6ts581068.png" vid="5"></image>
+  </div>
+</template>
+
+<style>
+
+    .select-panel{
+        margin-top: 50px;
+        margin-left: 20px;
+        width: 700px;
+        height:900px;
+        border-width: 2px;border-color: #D3D3D3;
+        background-color: #F0F0F0;
+    }
+</style>
+
+<script>
+    require('weex-components');
+    var animation = require('@weex-module/animation');
+    var apis = require('../common/api');
+    var Storage = require('@weex-module/storage');
+    module.exports={
+       data:{
+        titlesrc:'http://d2.freep.cn/3tb_161223165456h4h7581068.png'
+      },
+        methods:{
+
+            selectOne:function(e){
+                var vid = e.target.attr.vid;
+                console.log(vid);
+                switch(vid){
+                    case '1': Storage.setItem('flavor','acid',function(){});break;
+                    case '2': Storage.setItem('flavor','sweet',function(){});break;
+                    case '3': Storage.setItem('flavor','hot',function(){});break;
+                    case '4': Storage.setItem('flavor','salty',function(){});break;
+                    case '5': Storage.setItem('flavor','all',function(){});break;
+                }
+             apis.navigator(this.baseURL,'module/selecttime.js',function(){});
+            }
+        },
+        created: function () {
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl,true);
+
+            this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight
+            }.bind(this));
+             this.$on('back',function(){
+              apis.navigator(self.baseURL,'module/selectnum.js',function(){});
+            })
+        }
+    }
+    
+</script>

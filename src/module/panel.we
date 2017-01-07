@@ -1,0 +1,113 @@
+<template>
+		<div  class="div" >
+      <div style=" flex-direction: row;">
+        <image src="http://d3.freep.cn/3tb_161222174156jm8m581068.png" style="margin-left:10px;width:300px;height:70px"></image>       
+      </div>    
+      <div class="top-slider">
+       <slider class="top-slider" append="tree" auto-play="true" interval="2000">
+        <indicator class="indicator"></indicator>
+          <div repeat="{{imageList}}">
+            <image class="slider-item" src="{{cover}}" onclick="gotoList" itemid="{{id}}" itemtitle="{{title}}"></image>
+          </div>
+       </slider>
+      </div>
+		</div> 
+</template>
+<script>
+  require('weex-components');
+  var apis = require('../common/api');
+  var Storage = require('@weex-module/storage');
+  var geolocation = require('@weex-module/geolocation');
+  var modal = require('@weex-module/modal');
+  module.exports = {
+    data: {
+      img: 'http://www.keaitupian.com/uploads/allimg/130716/1_130716110019_2.jpg',
+      imageList: [{
+            'id':0,
+            'cover':'http://d3.freep.cn/3tb_161223084712kgvg581068.png',
+            'title':'轮播图1'
+            },{
+            'id':1,
+            'cover':'http://d2.freep.cn/3tb_1612231435376fne581068.png',
+            'title':'轮播图2'
+            },{
+            'id':2,
+            'cover':'http://d3.freep.cn/3tb_161223144709ktv5581068.png',
+            'title':'轮播图3'
+            }]
+    },
+    methods:{
+      gotoList:function(){       
+        apis.navigator(this.baseURL, 'module/showrecommend.js', function() {});
+      }
+    },
+    created:function(){
+      var self=this;
+      var bundleUrl = this.$getConfig().bundleUrl;
+      this.baseURL = apis.getBaseUrl(bundleUrl,true);
+    }
+  }
+</script>
+<style>
+.top-slider {
+  flex-direction: row;
+  height: 400px;
+  width: 750px;
+}
+.slider-item {
+   height: 400px;
+   width: 750px;
+}
+.div{
+	width: 750;
+  padding-bottom: 50px;
+}
+.indicator {
+        position: absolute;
+        width: 690px;
+        height: 400px;
+        top: 170px;
+        left: 300px;
+        itemColor: #dddddd;
+        itemSelectedColor: #999999;
+        item-size: 20;
+    }
+.runimg {
+    width:250;
+    height:150;
+  }
+ .textbox{
+    flex-direction: row;
+    margin-left: 20px;
+ }
+ .text1{
+    margin-top: 40px;
+ 		font-size:50;
+    overflow: hidden;
+    font-family:Microsoft Yahei;
+ }
+  .text2{
+    margin-top:5px;
+    padding-right: 30px;
+    font-size: 60;
+    overflow: hidden;
+    font-family:Microsoft Yahei;
+    color:#EE5C42;
+    font-style: italic;
+    font-weight: bold;
+ }
+  .text3{
+    margin-top: 10px;
+    font-size: 50;
+    overflow: hidden;
+    font-family:Microsoft Yahei;
+    color:#778899;
+ }
+ .text4{
+  margin-top: 2px;font-size: 60;font-family:Microsoft Yahei;color:#8B4789;font-style: italic;font-weight: bold;
+ }
+ .text5{
+  margin-top: 10px;font-size: 50;font-family:Microsoft Yahei;
+ }
+ 
+</style>

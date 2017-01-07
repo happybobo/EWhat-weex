@@ -1,0 +1,133 @@
+<template>
+<div>
+ <image style="height:{{deviceHeight}};width:750px;" src="http://d2.freep.cn/3tb_170103104748yr8x581068.jpg"></image>
+ <div style="position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0; background-color: rgba(255,200,255,0.1);">
+    <myheader titlesrc="{{titlesrc}} "></myheader>
+
+  <div class="item-border" repeat="{{item in randomList}}" index="{{$index}}">
+    <div cid="{{item.content_id}}" onclick="onItemClick" >
+        <random-item imgurl="{{item.imgurl}}" title="{{item.title}}"></random-item>
+    </div>
+  </div>
+  <div if="showMenu" id="menuDiv" 
+    style="height:{{deviceHeight}}px;width:750px;position:absolute;top:0;right:0;background-color:rgba(0,0,0,0.6)" onclick="hideMenu">
+       <div class="modal">
+          <div style="width:500;height:400;margin-left:50;margin-top:50;">
+              <text class="modal-text">{{onShowItem.content}}</text>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+</template>
+<style>
+    .item-border{
+        margin-top: 30px; 
+        margin-left: 20px;
+        width: 700px;
+        height:470px;
+        background-color:rgba(255,255,255,0.6);
+
+    }
+    .modal-text{
+        margin-left: 5px;
+        font-family: Microsoft Yahei;
+        font-size: 35;
+        line-height: 45;
+    }
+    .nav_bar {
+        flex-direction: row;
+        height: 180px;
+        background-color: #CDCDC1;
+    }
+
+    .nav_title {
+
+        align-items: center;
+        flex-direction: row;
+    }
+    .modal{
+        width:600px;height:500px;background-color:#EDEDED;position:absolute;top:300px;left:75px;
+        border-radius:30;
+    }
+
+</style>
+
+<script>
+    require('weex-components');
+    var modal = require('@weex-module/modal');
+    var apis = require('../common/api');
+    var navigator = require('@weex-module/navigator');
+    var Storage = require('@weex-module/storage');
+    module.exports = {
+        data: {
+              titlesrc:'http://d3.freep.cn/3tb_161222174156jm8m581068.png',
+
+            showMenu: false,
+            deviceHeight: 1300,
+            randomList:[{
+                'content_id':0,
+                'imgurl':'',
+                'content':'',
+                'title':''
+            },{
+                'content_id':1,
+                'imgurl':'',
+                'content':'',
+                'title':''
+            }],
+            onShowItem:{},
+
+        },
+        created: function () {
+            var self = this;
+            console.log("this is random")
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl, true);
+
+            this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight;
+            }.bind(this));
+
+            this.getRandomData();
+            
+            this.$on('back',function(){
+              apis.navigator(self.baseURL,'module/home.js',function(){});
+            })
+        },
+        methods: {
+            getRandomData: function () {
+                var self = this;
+                self.imageList = [];
+                var msg={};
+                msg.condition='';
+               apis.getRandom(msg,function (retdata) {
+                    var data = JSON.parse(retdata.data);
+                    for(var i=0;i<2;i++){
+                        self.randomList[i].title = data.foodList[i].name;
+                        self.randomList[i].content = data.foodList[i].describe;
+                        self.randomList[i].imgurl = apis.apiURL.baseurl+'/images/db/' + data.foodList[i].image[0];
+                        self.randomList[i].content_id=i;
+                    }
+                    
+                });
+
+            },
+            onItemClick: function (e) {
+                var self = this;
+                var itemid = e.target.attr.cid;
+                console.log(self.randomList[itemid].title);
+                self.onShowItem=self.randomList[itemid];
+                self.showMenu=true;
+            },
+            hideMenu:function(){
+                var self=this;
+                self.showMenu=false;
+            }
+        }
+    }
+</script>

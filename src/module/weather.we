@@ -1,0 +1,66 @@
+<template>
+    <div style="flex-direction:row; justify-content:center;align-item:center;">       
+        <image src="{{logoSrc}}" style="width:150;height:150;margin-top:30px;"></image>     
+        <wxc-marquee id="marquee" style="width:400; height: {{marquee.height * 3}};margin-left:30px;margin-top:10px;" step="{{marquee.height * 2}}" count="{{marquee.list.length}}" interval="{{marquee.interval}}" duration="{{marquee.duration}}">
+            <div repeat="{{marquee.list}}" style="height: {{marquee.height * marquee.length}};  overflow: hidden;">
+              <text style="height: {{marquee.height}}; color:#000 ; font-size: 30;">{{text}}</text>
+            </div>
+          </wxc-marquee>      
+    </div>
+</template>
+<style>
+    
+</style>
+<script>
+  require('weex-components');
+  module.exports = {
+    data: {
+      logoSrc:"http://d2.freep.cn/3tb_170104151249sc72581068.png",
+      marquee: {
+        height: 65,
+        duration: 1500,
+        interval: 2000,
+        list: [
+          {text: '芹菜和兔肉，元气伤个够'},
+          {text: '鹅肉和鸭梨，肾脏最不喜'},
+          {text: '猪肝菜花遇，降低抵抗力'},
+          {text: '牛肉和橄榄，涨肚很明显'},
+          {text: '鸡肉和芥末，共食助火热'},
+          {text: '鲤鱼和猪肝，同食消化难'},
+          {text: '鲤鱼和甘草，毒素跑不了'},
+          {text: '螃蟹和梨子，同吃拉肚子'},
+          {text: '喝酒再喝茶，心脏负担大'},
+          {text: '吃药别喝茶，药效难挥发'},
+          {text: '喝咖啡吸烟，伤动脉无边'},
+          {text: '豆浆加蜂蜜，吸收很不易'},
+          {text: '牛奶和橘子，腹胀很痛苦'},
+          {text: '芹菜和兔肉，元气伤个够'},
+          {text: '鹅肉和鸭梨，肾脏最不喜'},
+          {text: '猪肝菜花遇，降低抵抗力'},
+          {text: '牛肉和橄榄，涨肚很明显'},
+          {text: '鸡肉和芥末，共食助火热'},
+          {text: '鲤鱼和猪肝，同食消化难'},
+          {text: '鲤鱼和甘草，毒素跑不了'},
+          {text: '螃蟹和梨子，同吃拉肚子'},
+          {text: '喝酒再喝茶，心脏负担大'},
+          {text: '吃药别喝茶，药效难挥发'},
+          {text: '喝咖啡吸烟，伤动脉无边'},
+          {text: '豆浆加蜂蜜，吸收很不易'},
+          {text: '牛奶和橘子，腹胀很痛苦'}
+        ]
+      }
+    },
+    ready: function() {
+      this.initMarquee('marquee');
+    },
+    methods: {
+      initMarquee: function(id) {
+        var self = this;
+
+        var $marquee = this.$vm(id);
+        $marquee.$on('change', function() {
+        });
+      }
+    }
+  }
+</script>

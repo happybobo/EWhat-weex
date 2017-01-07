@@ -1,0 +1,96 @@
+<template>
+  <div style="background-color:#DCDCDC">
+    <myheader titlesrc="{{titlesrc}} "></myheader>
+
+     <image onclick="selectOne" style="width:700px;height:150px;position:absolute;top:300px;left:25px;" src="http://d2.freep.cn/3tb_161223180336ih40581068.png" vid="1"></image>
+     <image onclick="selectOne" style="width:700px;height:150px;position:absolute;top:450px;left:25px;" src="http://d3.freep.cn/3tb_1612231803123yht581068.png" vid="2"></image>
+     <image onclick="selectOne" style="width:700px;height:150px;position:absolute;top:600px;left:25px;" src="http://d3.freep.cn/3tb_161223180226n4hx581068.png" vid="3"></image>
+     <image onclick="selectOne" style="width:700px;height:150px;position:absolute;top:750px;left:25px;" src="http://d3.freep.cn/3tb_161223180252kv7h581068.png" vid="4"></image>
+     <image onclick="selectOne" style="width:700px;height:150px;position:absolute;top:900px;left:25px;" src="http://d2.freep.cn/3tb_161223180326i1h8581068.png" vid="5"></image>
+  </div>
+</template>
+
+<style>
+    .select-panel{
+        margin-top: 50px;
+        margin-left: 20px;
+        width: 700px;
+        height:900px;
+        border-width: 2px;border-color: #D3D3D3;
+        background-color: #F0F0F0;
+    }
+</style>
+
+
+<script>
+    require('weex-components');
+    var animation = require('@weex-module/animation');
+    var apis = require('../common/api');
+    var Storage = require('@weex-module/storage');
+module.exports={
+        data:{
+            num:'',
+            health:'',
+            flavor:'',
+            time:'',
+            titlesrc:'http://d3.freep.cn/3tb_161223180227jdf1581068.png'
+            
+        },
+        methods:{
+            selectOne:function(e){
+                var self=this;
+                var vid = e.target.attr.vid;
+                switch(vid){
+                    case '1': self.time='morning';break;
+                    case '2': self.time='midday';break;
+                    case '3': self.time='pm';break;
+                    case '4': self.time='evening';break;
+                    case '5': self.time='night';break;
+                }
+
+                Storage.getItem('num',function(e){
+                  self.num=e.data;
+                });
+
+                Storage.getItem('health',function(e){
+                      self.health=e.data;
+                      console.log(self.health);
+                }); 
+                Storage.getItem('flavor',function(e){
+                  self.flavor=e.data;
+                  var msg={};
+                  msg.condition={};
+                  msg.condition.num=self.num;
+                  msg.condition.health=self.health;
+                  msg.condition.flavor=self.flavor;
+                  msg.condition.time=self.time;
+                  apis.getResult(msg,function (retdata) {
+                     var data = JSON.parse(retdata.data);
+                     var result1=JSON.stringify(data.foodList[0]);
+                     var result2=JSON.stringify(data.foodList[1]);
+                     var result3=JSON.stringify(data.foodList[2]);
+                     Storage.setItem('result1',result1,function(){});
+                     Storage.setItem('result2',result2,function(){});
+                     Storage.setItem('result3',result3,function(){
+                    apis.navigator(self.baseURL,'module/showresult.js',function(){});
+                     }) 
+                  });            
+
+                });
+            }
+        },
+        created: function () {
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl,true);
+
+            this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight
+            }.bind(this));
+             this.$on('back',function(){
+              apis.navigator(self.baseURL,'module/selectflavor.js',function(){});
+            })
+        }
+    }
+    
+</script>
