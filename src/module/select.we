@@ -1,0 +1,51 @@
+<template>
+	<div class="div">
+		 <image class="img1" src="{{img[0]}}" onclick="gotorandom"></image>
+		 <image class="img2" src="{{img[1]}}" onclick="gotocustom"></image>
+		 <image class="img3" src="{{img[2]}}" onclick="gotoinvite"></image>
+	</div>
+</template>
+<script>
+	require('weex-components');
+	var apis = require('../common/api');
+	module.exports = {
+		data:{
+			img:['http://d3.freep.cn/3tb_161223115620cqoi581068.png',
+			'http://d3.freep.cn/3tb_161223115648n57m581068.png',
+			'http://d2.freep.cn/3tb_161223115708i77v581068.png']
+		},
+		methods: {
+			gotocustom: function() {
+	         apis.navigator(this.baseURL,'module/selectnum.js',function(){});
+			},
+		    gotorandom: function() {
+	         apis.navigator(this.baseURL,'module/random.js',function(){});
+			},
+			gotoinvite:function(){
+	         apis.navigator(this.baseURL,'module/invite.js',function(){});
+			}
+		},
+		created: function() {
+			var self = this;
+			var bundleUrl = this.$getConfig().bundleUrl;
+			this.baseURL = apis.getBaseUrl(bundleUrl, true);
+		}
+	}
+</script>
+<style>
+	.div{
+		padding-top: 20px;
+		width:750px;
+		justify-content: center;
+		align-items: center;
+	}
+	.img1{
+		width:270px;height:70px;margin-top: 10px;		
+	}
+	.img2{
+		width:270px;height:70px;margin-top: 50px;
+	}
+	.img3{
+		width:270px;height:70px;margin-top: 50px;
+	}
+</style>

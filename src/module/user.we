@@ -1,0 +1,251 @@
+<template>
+	<div>
+		<image style="height:{{deviceHeight}};width:750px;" src="http://d2.freep.cn/3tb_170102092552ywda581068.jpg"></image>
+		<div class="container">
+			<div class="head">
+		         <image class="re" onclick="back" src="http://d3.freep.cn/3tb_161223150449strt581068.png"></image>
+		         <image class="title" src="http://d3.freep.cn/3tb_170102092549k3ej581068.png"></image>
+	    	 </div>
+	    	 	<div style="align-items: center;margin-top: 80px;">
+	    	 		<input type="text" placeholder="星座" class="input" style="border-bottom-width: 1px;border-bottom-color: #CFCFCF;" oninput="inputstar"  value=""/>
+	                <input type="text"  placeholder="年龄"  oninput="inputage"  class="input"  value=""/>
+	                <div style="flex-direction: row;margin-left:50px;margin-top:50px;">
+	                  <div style="background-color:#68838B;width:320px;height:500px;margin-right:50px;">
+	                	<div class="secItem"  style="margin-top:20px;">
+		                	<image src="{{selectImg[0]}}" class="ico" ></image>
+		                	<text class="ico-text" onclick="clickFavor" cid="0">无辣不欢</text>
+		                    <image src="http://d3.freep.cn/3tb_170102102826oaj9581068.png" class="ok" if="bg[0].select"></image>
+		                </div>
+		                <div class="secItem">
+			                <image  src="{{selectImg[1]}}" class="ico" ></image>
+		                	<text class="ico-text" onclick="clickFavor" cid="1">素食主义</text>
+			                <image if="bg[1].select" src="http://d3.freep.cn/3tb_170102102826oaj9581068.png" class="ok"></image>
+						</div>
+						<div class="secItem">
+			                <image src="{{selectImg[2]}}" class="ico" ></image>
+		                	<text class="ico-text" onclick="clickFavor" cid="2">清淡养生</text>
+			                <image if="bg[2].select" src="http://d3.freep.cn/3tb_170102102826oaj9581068.png" class="ok"></image>
+						</div>
+						<div class="secItem">
+			                <image  src="{{selectImg[3]}}" class="ico" ></image>
+			                <text class="ico-text" onclick="clickFavor" cid="3">就爱甜的</text>
+			                <image if="bg[3].select" src="http://d3.freep.cn/3tb_170102102826oaj9581068.png" class="ok"></image>
+						</div>
+						<div class="secItem">
+			                <image src="{{selectImg[4]}}" class="ico"></image>
+			                <text class="ico-text"  onclick="clickFavor" cid="4">从不挑食</text>
+			                <image if="bg[4].select" src="http://d3.freep.cn/3tb_170102102826oaj9581068.png" class="ok"></image>
+			            </div>
+			            <div style="border-top-width: 2px;border-top-color: #6B6B6B;">
+			            	<text style="color:#F5FFFA;font-size:30;font-family: Microsoft Yahei;padding:20px;">口味</text>
+			            </div>
+	                  </div>
+	                
+	                  <div style="background-color:#68838B;width:320px;height:500px;margin-right:50px;">
+	                	<div class="secItem"  style="margin-top:20px;">
+			                <image src="{{selectImg[5]}}"  class="ico" ></image>
+			                <text class="ico-text" onclick="clickCareer" cid="5">学生党</text>
+			                <image if="bg[5].select" src="http://d3.freep.cn/3tb_170102102826oaj9581068.png" class="ok"></image>
+			            </div>
+						<div class="secItem">
+			                <image src="{{selectImg[6]}}" class="ico" ></image>
+			                <text class="ico-text" onclick="clickCareer" cid="6">上班族</text>
+			                <image if="bg[6].select" src="http://d3.freep.cn/3tb_170102102826oaj9581068.png" class="ok"></image>
+						</div>
+						<div class="secItem" style="border-bottom-width: 2px;border-bottom-color: #6B6B6B;height:240px;">
+			                <image  src="{{selectImg[7]}}" class="ico" ></image>
+			                <text class="ico-text" onclick="clickCareer" cid="7">自由职业</text>
+			                <image if="bg[7].select" src="http://d3.freep.cn/3tb_170102102826oaj9581068.png" class="ok"></image>
+			            </div>
+			            <div style="position:absolute;bottom:0;">
+			            	<text style="font-size:30;color:#F5FFFA;font-family: Microsoft Yahei;padding:20px;">职业</text>
+			            </div>
+	                  </div>
+	                </div>
+	                
+					
+	                
+	    	 	</div>
+	    	 	
+	    	 	
+	    	 <image src="http://d3.freep.cn/3tb_170101201152b8qq581068.png" class="btn" onclick="save"></image>
+		</div>
+		
+	</div>
+</template>
+<style>
+	.container{
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    background-color: rgba(255,255,255,0.3);
+	  }
+	.head{
+        flex-direction: row;justify-content: center;margin-top: 50px;
+    }
+    .re{
+        width:80px;height:70px;align-items: center;position: absolute;left:20;
+    }
+    .title{
+        width: 300px;height:60px;align-items: center;margin-bottom: 10px;
+    }
+    .text-img{
+    	width:90px;
+    	height:750px;
+    }
+    .input {
+	    background-color:#F5F5F5;
+	    margin-left: 5px;
+	    font-size: 25;
+	    height: 100;
+	    width: 680;
+  	}
+  	.ico{
+  		width: 55px;
+  		height:55px;
+  		margin-top: 10px;
+  	}
+  	.ico-text{
+  		font-size:30;color:#F5FFFA;font-family: Microsoft Yahei;margin-top: 20px;padding-left:20px;
+  	}
+  	.btn{
+  		position: absolute;
+	    top:1050px;
+	    left:250px;
+	    width:270px;
+	    height:65px;
+	 }
+	 .ok{
+	 	width: 50px;height: 50px;margin-left: 50px;margin-top: 10px;
+	 }
+	 .secItem{
+	 	flex-direction: row;padding-left:10px;height:80px;
+	 }
+</style>
+<script>
+	require('weex-components');
+	var apis = require('../common/api');
+    var Storage = require('@weex-module/storage');
+	module.exports={
+		data:{
+			username:'',
+			onselectFavor:'',
+			onselectCareer:'',
+			star:'',
+			age:'',
+			bg:[{select:false},
+				{select:false},
+				{select:false},
+				{select:false},
+				{select:false},
+				{select:false},
+				{select:false},
+				{select:false},],
+			selectImg:[
+			'http://d2.freep.cn/3tb_170102101055vb6v581068.png',
+			'http://d3.freep.cn/3tb_170102101057c5mj581068.png',
+			'http://d3.freep.cn/3tb_170102101056lomi581068.png',
+			'http://d2.freep.cn/3tb_1701021010541fqg581068.png',
+			'http://d3.freep.cn/3tb_170102101057dscb581068.png',
+			'http://d3.freep.cn/3tb_1701021010583mxg581068.png',
+			'http://d3.freep.cn/3tb_170102101056abvh581068.png',
+			'http://d2.freep.cn/3tb_170102101055k4or581068.png']
+		},
+		methods:{
+			clickFavor:function(e){
+				var self = this;
+                var itemid = e.target.attr.cid;
+                if(self.bg[itemid].select==false)
+                	self.bg[itemid].select=true;
+                else
+                	self.bg[itemid].select=false;
+                
+                /*for(var i=0;i<5;i++){
+                	if(i!=itemid){
+
+                		self.bg[i].select=false;
+                		console.log(self.bg[i])
+                	}
+                	else{
+                		self.bg[i].select=true;
+                		self.onselectFavor=itemid;
+                		console.log(self.bg[i])
+                	}
+                }
+                */
+
+			},
+			clickCareer:function(e){
+				var self = this;
+                var itemid = e.target.attr.cid;
+                
+                for(var i=5;i<8;i++){
+                	if(i!=itemid){
+
+                		self.bg[i].select=false;
+                		console.log(self.bg[i])
+                	}
+                	else{
+                		self.bg[i].select=true;
+                		self.onselectCareer=itemid+'';
+                		console.log(self.bg[i])
+                	}
+                }
+			},
+			save:function(){
+				var self=this;
+				var msg={};
+				msg.user={};
+				msg.user.personalInfo={};
+				msg.user.personalInfo.star=this.star;
+				msg.user.personalInfo.age=this.age;
+				//msg.user.personalInfo.favor=this.onselectFavor;
+				msg.user.personalInfo.favor=[];
+				var j=0;
+				for(var i=0;i<5;i++){
+                	if(self.bg[i].select==true){
+                		msg.user.personalInfo.favor[j++]=i;
+                	}
+                }
+				msg.user.personalInfo.career=this.onselectCareer;
+				msg.user.username=this.username;
+				apis.editUserInfo(msg,function(retdata){
+					console.log(retdata);
+					self.$call('modal', 'toast', {
+	                 'message': '保存成功了哦',
+	                 'duration': 5
+	                });
+				});
+				
+			},
+			inputstar:function(event){
+		        this.star=event.value;
+		    },
+		    inputage:function(event){
+        		this.age=event.value;
+     	    },
+     	    back:function(){
+             apis.navigator(this.baseURL,'module/home.js',function(){});
+            }
+		},
+		created:function(){
+			var self=this;
+			Storage.getItem('username', function(e) {
+    			if (e.data != 'null') {
+    				self.username = e.data;
+    				console.log(e.data)
+    			}
+
+    		});
+
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl, true);
+
+    		this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight
+            }.bind(this));
+		}
+	}
+</script>

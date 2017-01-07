@@ -1,0 +1,132 @@
+<template>
+	<div class="div">
+		<panel></panel>
+		 <text value="{{username}}" style="position:absolute;right:90;top:10;font-fimily:Microsoft Yahei;font-size:40;" if="{{showLogout}}"></text>
+        <image src="http://d3.freep.cn/3tb_170101172458b612581068.png" style="width:70;height:70;position:absolute;top:10;right:10;"  if="{{showLogout}}" onclick="onMenuClick"></image>
+		<div class="weather-panel"></div>
+		<weather class="weather"></weather>
+		<div class="btn-panel"></div>
+		<select class="select"></select>
+		<div if="showMenu"
+             style="height: {{deviceHeight}}px;width:750px;position:absolute;top:0;right:0;background-color:rgba(0,0,0,0.5)"
+             onclick="hideMenu">
+            <div style="width:300px;background-color:#fff;position:absolute;top:70px;right:0px;">
+                <list>
+                    <cell repeat="{{rows}}" onclick="onMenuItemclick" index="{{$index}}">
+                        <div class="menu-item">
+                            <text class="menu-item-title">{{data}}</text>
+                        </div>
+                    </cell>
+                </list>
+            </div>
+        </div>	
+	</div>
+</template>
+<script>
+    require('weex-components');
+    var Storage = require('@weex-module/storage');
+    var apis = require('../common/api');
+    var modal = require('@weex-module/modal');
+    module.exports = {
+    		data: {
+    			showLogout: false,
+    			showMenu: false,
+    			deviceHeight: 1300,
+    			username:'',
+    			rows: [{
+    				data: '个人中心'
+    			}, {
+    				data: '退出登录'
+    			}],
+    		},
+    		methods: {
+    			onMenuClick: function() {
+    				this.showMenu = true;
+    			},
+    			onMenuItemclick: function(e) {
+    				var self = this;
+    				//console.log(e.target.attr.index)
+    				if (e.target.attr.index == 0) {
+    					apis.navigator(this.baseURL, 'module/user.js', function() {});
+    				} else {
+    					this.logout();
+    				}
+    				self.showMenu = false;
+    			},
+    			hideMenu:function(){
+    				this.showMenu=false;
+    			},
+    			logout: function(msg, okTitle, cancelTitle) {
+    				var self = this
+    				if (!msg || typeof msg !== 'string') {
+    					msg = "确定要退出吗？";
+    				}
+    				okTitle = okTitle || "是的";
+    				cancelTitle = cancelTitle || "不要";
+    				modal.confirm({
+    					'message': msg,
+    					'okTitle': okTitle,
+    					'cancelTitle': cancelTitle
+    				}, function(result) {
+    					if (result == "是的") {
+    						Storage.removeItem('username', function() {});
+    						apis.navigator(self.baseURL, 'main.js', function() {});
+    					}
+    				});
+    			}
+    		},
+    		created: function() {
+    			var self = this;
+    			var bundleUrl = this.$getConfig().bundleUrl;
+    			this.baseURL = apis.getBaseUrl(bundleUrl, true);
+
+    			this.$getConfig(function(config) {
+    				self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight;
+    				self.imgHeight = self.deviceHeight - 120;
+    			}.bind(this));
+
+    			Storage.getItem('username', function(e) {
+
+    				if (e.data != 'null') {
+    					self.showLogout = true;
+    					self.username = e.data;
+    				}
+
+    			});
+    			Storage.removeItem('num', function() {});
+    			Storage.removeItem('health', function() {});
+    			Storage.removeItem('flavor', function() {});
+    			Storage.removeItem('time', function() {});
+    			Storage.removeItem('result1', function() {});
+    			Storage.removeItem('result2', function() {});
+    			Storage.removeItem('result3', function() {});
+    		}
+  }
+</script>
+<style>
+	.div{
+      background-color: #DCDCDC;  
+ 	}
+	.btn-panel{
+		margin-left: 50px;margin-bottom:19px;width: 650px;height:360px;
+		border-width: 2px;margin-top: 50px;border-color: #D3D3D3;
+        background-color: #F0F0F0; 
+	}
+	.weather-panel{
+		margin-left: 50px;width: 650px;height:220px;
+		border-width: 2px;border-color: #D3D3D3;background-color: #F0F0F0;
+	}
+	.weather{
+      position:absolute;top:530px;left:80px;
+	}
+	.select{
+		position:absolute;top:780px;
+	}
+	.menu-item {
+        justify-content: center;
+        border-bottom-width: 2px;
+        border-bottom-color: #c0c0c0;
+        height: 100px;
+        padding: 20px;
+    }
+</style>

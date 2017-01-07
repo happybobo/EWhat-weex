@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "E:\\aaanow\\weexlearn\\bundletwo\\EWhat\\android\\playground\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "E:\\aaanow\\weexlearn\\bundletwo\\EWhat\\android\\playground\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\aaanow\\weexlearn\\bundletwo\\EWhat\\android\\playground\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi-v4\\logo.png",
+        "source": "E:\\aaanow\\weexlearn\\bundletwo\\EWhat\\android\\playground\\app\\src\\main\\res\\mipmap-hdpi\\logo.png"
+    }
+]

@@ -1,0 +1,61 @@
+<template>
+	<div class="bg">
+		<div>
+			<image src="{{btns[0]}}" class="img-btn" ></image>
+			<text class="text-btn">小清新</text>
+		</div>
+		<div>
+			<image src="{{btns[1]}}" class="img-btn" ></image>
+			<text class="text-btn">吃不饱</text>
+		</div>
+		<div>
+			<image src="{{btns[2]}}" class="img-btn" ></image>
+			<text class="text-btn">高逼格</text>
+		</div>
+		<div>
+			<image src="{{btns[3]}}" class="img-btn" ></image>
+			<text class="text-btn">聚会餐</text>
+		</div>
+	</div>
+</template>
+<style>
+	.bg{
+		background-color: rgba(255,255,240,0.7);
+		width: 750px;
+		height:200px;
+		flex-direction:row;
+		align-items: center;
+	}
+	.img-btn{
+		width: 120px;
+		height:120px;
+		margin-left: 50px;
+	}
+	.text-btn{
+		font-family:Microsoft Yahei;
+		font-size:27;
+		padding-top: 10px;
+		padding-left: 70px;
+	}
+</style>
+<script>
+	require('weex-components');
+	var apis = require('../common/api');
+    var navigator = require('@weex-module/navigator');
+	module.exports={
+		data:{
+			btns:['http://d2.freep.cn/3tb_170103104452dmli581068.png',
+			'http://d2.freep.cn/3tb_170103104452vt7y581068.png',
+			'http://d2.freep.cn/3tb_170103104453j834581068.png',
+			'http://d3.freep.cn/3tb_170103104453id1g581068.png']
+		},
+		methods:{
+
+		},
+		created: function () {
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl, true);
+        },
+	}
+</script>

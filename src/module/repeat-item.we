@@ -1,0 +1,82 @@
+<template>
+	<div class="food-item">
+		<div class="item-content">
+			<image src="{{img}}" resize="cover" class="img-item"  onclick="onItemClick"></image>
+			<div style="width:330px;height:200px;margin-left:20px;margin-top:20px;">
+				<text style="font-size:40;">{{title}}</text>
+				<image if="{{showlove}}" src="{{loveIt}}" onclick="loveClick" cid="{{cid}}" class="love-img"></image>
+				<text style="font-size:30;margin-top:20px;">{{detail}}</text>
+			</div>
+		    
+		</div>
+	    
+	</div>
+</template>
+<style>
+	.food-item{
+		margin-left: 60px;
+		margin-bottom: 30px;
+		width:630px;
+		height:250px;
+		background-color: #F5F5F5;
+	}
+	.item-content{
+		 flex-direction: row;
+		 
+	}
+	.img-item {
+        width: 250px;
+        height: 200px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    .love-img{
+    	width: 55px;height:55px; position: absolute;right: 30px;bottom:150px; 
+    }
+</style>
+<script>
+	require('weex-components');
+    var modal = require('@weex-module/modal');
+    var apis = require('../common/api');
+    var navigator = require('@weex-module/navigator');
+    var Storage = require('@weex-module/storage');
+	module.exports={
+		data:{
+			img:'',
+			detail:'',
+			title:'',
+			loveIt:'http://d2.freep.cn/3tb_170104105903vgqp581068.png',
+			cid:'',
+			showlove:false,
+		},
+		methods:{
+			loveClick:function(e){
+				var itemid = e.target.attr.cid;
+				console.log(itemid)
+                var self=this;
+                if(self.loveIt=='http://d2.freep.cn/3tb_170104105903vgqp581068.png'){
+                    self.loveIt='http://d3.freep.cn/3tb_1701031753581asn581068.png';
+                    var msg={};
+                    msg.condition={};
+                    msg.condition.foodId=itemid;
+                    apis.choiceLove(msg,function(retback){
+                        console.log(retback)
+                    });
+                }
+                else
+                    self.loveIt='http://d2.freep.cn/3tb_170104105903vgqp581068.png';
+            }
+		},
+		created: function () {
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl, true);
+
+            Storage.getItem('username',function(e){
+                if(e.data!='null'){
+                   self.showlove=true; 
+                }               
+            });
+        },
+	}
+</script> 

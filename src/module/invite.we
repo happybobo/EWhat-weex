@@ -1,0 +1,129 @@
+<template>
+  <div>
+    <image style="height:{{deviceHeight}};width:750px;" src="http://d2.freep.cn/3tb_170103104748yr8x581068.jpg"></image>
+  	<div style="position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0; background-color: rgba(255,200,255,0.1);">
+
+        <myheader titlesrc="{{titlesrc}} "></myheader>
+        
+        <div style="align-items: center;">
+        	<image src="{{img}}" resize="cover" class="image"></image>
+        	<div class="btn-border">
+        		<image src="{{btnstart}}" class="btn" onclick="start" ></image>
+        		<image src="{{btnstop}}"  class="btn"  style="margin-top:50px;" onclick="stop" ></image>
+        	</div>
+        </div>
+        <div if="showMenu" id="menuDiv" 
+          style="height:{{deviceHeight}}px;width:750px;position:absolute;top:0;right:0;background-color:rgba(0,0,0,0.6)" onclick="hideMenu">
+           <div class="modal">
+               <image src="{{onShowImg}}" style="width:600px;height:500px;border-radius:30;"></image>
+               <text value="{{onShowTitle}}" class="text"></text>
+           </div>
+         </div>
+        
+  	</div>
+  </div>
+</template>
+<style>
+    .image{
+    	width:400px;
+    	height:400px;
+      border-radius:360;
+      margin-top: 100px;
+    }
+    .btn{
+    	width: 100px;
+    	height: 100px;
+    }
+    
+    .btn-border{
+    	margin-top: 80px;
+      background-color:rgba(255,255,255,0.6);
+    	width:600;
+    	height:350; 
+    	align-items: center;
+    }
+    .btn{
+    	width:300px;
+    	height:80px;
+    	margin-top: 60px;
+    }
+    .modal{
+        width:600px;height:500px;background-color:#EDEDED;position:absolute;top:280px;left:75px;
+        border-radius:30;
+    }
+    .text{
+      position:absolute;top:170;left:120;font-size:80;color:#FFFAFA;
+      font-family: Microsoft Yahei;
+    }
+</style>
+<script>
+    require('weex-components');
+    var apis = require('../common/api');
+    module.exports = {
+        data: {
+          showMenu:false,
+          onShowImg:'',
+          onShowTitle:'',
+          titlesrc:'http://d3.freep.cn/3tb_161225160904x8t4581068.png',
+          img :"http://d2.freep.cn/3tb_161225160921rvw7581068.png",
+          imgs:[
+          "http://d2.freep.cn/3tb_161225160921rvw7581068.png",
+          "http://d2.freep.cn/3tb_161225160949rijf581068.png",
+          "http://d3.freep.cn/3tb_161225161009sapj581068.png",
+          "http://d3.freep.cn/3tb_161225161028oxv2581068.png",
+          "http://d2.freep.cn/3tb_16122516105070b9581068.png",
+          "http://d2.freep.cn/3tb_161225161107fuhk581068.png",
+          "http://d3.freep.cn/3tb_161225161119g68c581068.png",
+          "http://d2.freep.cn/3tb_161225161128hppl581068.png",
+          "http://d2.freep.cn/3tb_161225161144898a581068.png",
+          ],
+          btnstart:"http://d3.freep.cn/3tb_161225160849armj581068.png",
+          btnstop:"http://d2.freep.cn/3tb_161225160849oupr581068.png",
+          timer:null
+        },
+        methods: {
+            timer: null,
+            start:function(){
+              var self = this;
+              self.start=false;
+              self.timer = setInterval(function(){
+              var   num = Math.floor(Math.random() * self.imgs.length); 
+                self.img = self.imgs[num];
+             },100);
+             var msg={};
+             msg.condition='';
+             apis.getInvite(msg,function (retdata) {
+                   
+                    var data = JSON.parse(retdata.data);
+                    self.onShowImg='http://luoyu.site:3000/images/db/' + data.foodList[0].image[0];
+                    self.onShowTitle=data.foodList[0].name;
+                });
+            },
+            stop:function(){
+              this.showMenu=true;
+              clearInterval(this.timer);
+            },
+            hideMenu:function(){
+              this.showMenu=false;
+            }
+        },
+        created:function(){
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl, true);
+
+            this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight;
+                self.imgHeight=self.deviceHeight-120;
+            }.bind(this));
+
+             this.$on('back',function(){
+              apis.navigator(self.baseURL,'module/home.js',function(){});
+            })
+        }
+}
+</script>

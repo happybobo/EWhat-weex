@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.facebook.fresco\fresco\0.10.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="857099e23430445aeb65cf703d5adf646ff280f1">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fresco-0.10.0_8d7fa6891b4cd196082fc789249efc400b377d91.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.1.4\129874135e6081269ace2312092031558865de12\bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.4_fce9f0ba547cf99e617e184e754a896cd2162bf0.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.3.0\2e7bc7033dc2c8423e661224171b3133fb155b28\okhttp-2.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2e7bc7033dc2c8423e661224171b3133fb155b28">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\okhttp-2.3.0_f9da80a2a818e132e51ca1ca552798e9e160bdb1.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_27990f49107c7016c892ccf2411822dc29dbaab5.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_4a5846b84f16f45de2de0874c39e8329169d76e2.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_1bb9ae4031ad6c188c7c276f9adb94db1b1df56b.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_deb146e42c79c66425b027969531224b5b8344cb.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.1.1_358beee0bab1a1ddb05da1845e736c1384f3f0f5.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.3.0\1b355f73402020c5a0dcca58affc3ec3dfeabac1\okio-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1b355f73402020c5a0dcca58affc3ec3dfeabac1">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\okio-1.3.0_3c1d534d099d77763e90d95ac3d929a310b43700.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.taobao.android\weex_inspector\0.0.8.5\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0233bf1f05458a35f58379984eee05a926cc47d5">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.taobao.android-weex_inspector-0.0.8.5_1a708ebaa747001c32bba9ad684947e347702722.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\.gradle\caches\modules-2\files-2.1\com.alibaba\fastjson\1.1.46.android\108717c93f7aec31fb86db57cb4ad1e26034c638\fastjson-1.1.46.android.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="108717c93f7aec31fb86db57cb4ad1e26034c638">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\fastjson-1.1.46.android_1d6114508c63066d4d80b90514940a157e72d2f5.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\0.10.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5e88a2a26ac71cd7f8fd8bd9f9381fa06d1a47a3">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-0.10.0_190b0960ba38c7a532d019320aba51d077680f8e.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.2.1\2287494d4f5f9f3a9a2bb6980e3f32053721b315\core-3.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\core-3.2.1_e69bd2755e765414e31d78818243c6c633f7ef32.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp-ws\2.3.0\7896d229b6aa7884552ab9c23de54c7eb0de8203\okhttp-ws-2.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7896d229b6aa7884552ab9c23de54c7eb0de8203">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\okhttp-ws-2.3.0_ec540e7b67b9bb905de82afc8d81505f521e6721.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\0.10.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e1ed00013584399dbe27d45ac1fd6a9828c9fca">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-0.10.0_0914e843f2cf5242c606c4d6702ae3f32a61df7c.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.1.1_f94a146618ca18e4b03077089c0a11a99434871c.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-embedded\3.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0e1f104cf60bfe34147ef670229f2635789c79a4">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.journeyapps-zxing-android-embedded-3.4.0_e619884a6cbe4b6fceb4338342482f16c7fee745.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\playground\appframework\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b916d312662b0d5415de43b206b9c233781aace1">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\playground-appframework-unspecified_b84502b57070343d0b83a678550aefec51a10120.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.taobao.android\weex_sdk\0.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="21fc558866818bff054a556bfff2695ddef9e5b8">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.taobao.android-weex_sdk-0.8.0_432c39863631d85db6e87e28e9f283dd5ea833b5.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\0.10.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="65f0c887ee1f57cd0ea65b228e39b7f35372b798">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-0.10.0_27c4e78377f0f6b3bbedee1bf205f77897f8572f.jar" />
+    </item>
+    <item
+        jar="C:\Users\pc\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\library-2.4.0_64176596d5bb2121d93e14e3a764092f67164116.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\0.10.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d323cf4983bdfce7136a1ce5e32710e1b36b20fe">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-0.10.0_351c62ee0e5e518f01ef7b7e559eb669c59641ae.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_74ae265bd591798943f98ae96aeee330e82ac990.jar" />
+    </item>
+    <item
+        jar="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\jacoco\jacocoagent.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ea73283d55c98ab1fccb8c23d76c68b7d7ecbd83">
+        <dex dex="E:\aaanow\weexlearn\bundletwo\EWhat\android\playground\app\build\intermediates\pre-dexed\debug\jacocoagent_94d8c284a4716e44841131220dbf8be6cc416d55.jar" />
+    </item>
+
+</items>

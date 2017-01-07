@@ -1,0 +1,73 @@
+<template>
+  <div>
+    <recommendcute class="page" if="page===0" style="z-index:{{page===0?5:0}}"></recommendcute>
+    <recommendhungry class="page" if="page===1" style="z-index:{{page===1?5:0}}"></recommendhungry>
+    <recommendhigh class="page" if="page===2" style="z-index:{{page===2?5:0}}"></recommendhigh>
+    <recommendparty class="page" if="page===3" style="z-index:{{page===2?5:0}}"></recommendparty>
+    <tabbar id="tabbar" bgopacity="0"  tabs="{{tabItems}}" selected="{{page}}" class="tabbar"></tabbar>
+ </div> 
+</template>
+
+<style>
+.navpage{
+  z-index: 10;
+  height:88;
+}
+.tabbar{
+  width:750;
+  z-index: 10;
+  position: absolute;;
+  top:140px;
+}
+.page{
+  background-color: #DCDCDC;
+  z-index:0;
+  
+}
+</style>
+
+<script>
+
+require("weex-tabbar");
+require("./recommendcute.we");
+require("./recommendhungry.we");
+require("./recommendhigh.we");
+require("./recommendparty.we");
+var Storage = require('@weex-module/storage');
+var apis = require('../common/api');
+module.exports = {
+  data:{
+    page:0,//默认选择的是第一个页面
+    tabItems: [//配置每个tabbar
+      {
+      },
+      {
+      },
+      {
+      },
+      {
+      }
+    ],
+  },
+  created:function() {
+    // 监听子组件tabbar发送过来的消息
+    this.$on("switchPage",function(e){
+      this.page = e.detail.page;
+    });
+    // 监听子组件index发送过来的消息
+    this.$on("addGoodsNumber",function(e){
+      // 再根据消息传递给tabbar
+      this.$broadcast("tabbarAccept",{
+        action:e.detail.action,//执行的动作,包含"add","minus","set"
+        target:e.detail.target,//执行的目标
+        value:e.detail.value,//自定义字段
+      })
+    });
+
+    var self=this;
+    this.$getConfig(function (config) {
+        self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight
+    }.bind(this));
+  }
+}
+</script> 

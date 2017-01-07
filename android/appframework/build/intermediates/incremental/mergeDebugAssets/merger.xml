@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="E:\aaanow\weexlearn\bundletwo\EWhat\android\appframework\src\main\assets"/><source path="E:\aaanow\weexlearn\bundletwo\EWhat\android\appframework\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\aaanow\weexlearn\bundletwo\EWhat\android\appframework\src\debug\assets"/></dataSet></merger>

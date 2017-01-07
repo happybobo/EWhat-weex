@@ -1,0 +1,69 @@
+<template>
+  <div style="background-color:#DCDCDC">
+    <myheader titlesrc="{{titlesrc}} "></myheader>
+
+     <div class="select-panel"></div> 
+     <image onclick="selectOne" style="width:200px;height:200px;position:absolute;top:240px;left:100px;" src="http://d2.freep.cn/3tb_161223161032m93m581068.png" vid="1"></image>
+     <image onclick="selectOne" style="width:150px;height:150px;position:absolute;top:320px;left:450px;" src="http://d3.freep.cn/3tb_1612231610323luv581068.png" vid="2"></image>
+     <image onclick="selectOne" style="width:200px;height:200px;position:absolute;top:440px;left:200px;" src="http://d2.freep.cn/3tb_1612231610331wb2581068.png" vid="3"></image>
+     <image onclick="selectOne" style="width:400px;height:400px;position:absolute;top:550px;left:320px;" src="http://d2.freep.cn/3tb_161223161023r9ib581068.png" vid="4"></image>
+     <image onclick="selectOne" style="width:150px;height:150px;position:absolute;top:660px;left:100px;" src="http://d3.freep.cn/3tb_161223161033os37581068.png" vid="5"></image>
+     <image onclick="selectOne" style="width:160px;height:150px;position:absolute;top:840px;left:180px;" src="http://d3.freep.cn/3tb_1612231610326rlc581068.png" vid="6"></image>
+  </div>
+</template>
+
+<style>
+
+    .select-panel{
+        margin-top: 50px;
+        margin-left: 20px;
+        width: 700px;
+        height:900px;
+        border-width: 2px;border-color: #D3D3D3;
+        background-color: #F0F0F0;
+    } 
+</style>
+
+
+<script>
+    require('weex-components');
+    var animation = require('@weex-module/animation');
+    var apis = require('../common/api');
+    var Storage = require('@weex-module/storage');
+    module.exports={
+        methods:{
+         data:{
+        titlesrc:'http://d2.freep.cn/3tb_161223161032v4ni581068.png'
+      },
+            selectOne:function(e){
+                var vid = e.target.attr.vid;
+                console.log(vid);
+                 switch(vid){
+                    case '1': Storage.setItem('health','great',function(){});break;
+                    case '2': Storage.setItem('health','cute',function(){});break;
+                    case '3': Storage.setItem('health','recover',function(){});break;
+                    case '4': Storage.setItem('health','meat',function(){});break;
+                    case '5': Storage.setItem('health','pox',function(){});break;
+                    case '6': Storage.setItem('health','hungry',function(){});break;
+                }
+             apis.navigator(this.baseURL,'module/selectflavor.js',function(){});
+                 
+            }
+        },
+        created: function () {
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl,true);
+
+            this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight
+            }.bind(this));
+
+            this.$on('back',function(){
+              apis.navigator(self.baseURL,'module/selectnum.js',function(){});
+            })
+
+        }
+    }
+    
+</script>

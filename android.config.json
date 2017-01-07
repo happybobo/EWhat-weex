@@ -1,0 +1,6 @@
+{
+  "AppName":"EWhat",
+  "AppId":"com.EWhat.weex",
+  "SplashText":"Hello\nEWhat",
+  "WeexBundle":"main.js"
+}

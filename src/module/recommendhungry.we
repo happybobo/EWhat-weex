@@ -1,0 +1,70 @@
+<template>
+	<div>
+		<image src="{{imgbg}}" style="height:{{deviceHeight}};width:750px;"></image>
+		<div class="main">
+			<myheader titlesrc="{{titlesrc}}" class="header"></myheader>
+			<rebars style="margin-top:25px;"></rebars>
+			<list style="margin-top:30px;">
+				<cell repeat="{{foodItem in foodItems}}">
+					<repeat-item img="{{base}}{{foodItem.image[0]}}" cid="{{foodItem.id}}" title="{{foodItem.name}}"  detail="{{foodItem.benefit}}"></repeat-item>
+				</cell>
+			</list>
+		</div>
+	</div>
+</template>
+<style>
+	.main{
+		position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+	}
+	.header{
+		margin-top: 10px;
+	}
+	
+</style>
+<script>
+	require('weex-components');
+    var modal = require('@weex-module/modal');
+    var apis = require('../common/api');
+    var navigator = require('@weex-module/navigator');
+	module.exports={
+		data:{
+			deviceHeight: 1300,
+			imgbg:'http://d2.freep.cn/3tb_170103104748yr8x581068.jpg',
+			titlesrc:'http://d2.freep.cn/3tb_1701031044538pls581068.png',
+			base:'',
+			foodItems:[],
+		},
+		methods:{
+			getHungryData:function(){
+				var self=this;
+				var msg={};
+				msg.condition={};
+				msg.condition.data='hungry';
+				apis.getCuteData(msg,function(retdata){
+					var data = JSON.parse(retdata.data);
+					console.log(data);
+					self.foodItems=data.foodList;
+				})
+			}
+		},
+		created: function () {
+            var self = this;
+            var bundleUrl = this.$getConfig().bundleUrl;
+            this.baseURL = apis.getBaseUrl(bundleUrl, true);
+            this.base=apis.apiURL.baseurl+'/images/db/';
+
+            this.$getConfig(function (config) {
+                self.deviceHeight = 750 / config.env.deviceWidth * config.env.deviceHeight;
+            }.bind(this));
+
+            this.getHungryData();
+
+            this.$on('back',function(){
+              apis.navigator(self.baseURL,'module/home.js',function(){});
+            })
+        },
+	}
+</script> 
